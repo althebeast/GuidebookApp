@@ -26,7 +26,7 @@ struct CityCard: View {
                 .opacity(0.5)
                 .clipShape(.rect(cornerRadius: 15))
             
-            VStack {
+            VStack(alignment: .leading) {
                 Text(city.name)
                     .font(.largeTitle)
                     .fontWeight(.bold)

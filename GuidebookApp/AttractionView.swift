@@ -24,8 +24,8 @@ struct AttractionView: View {
                     .buttonStyle(.plain)
                 }
             }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
         .padding(.horizontal)
     }
 }
