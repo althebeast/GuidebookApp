@@ -26,11 +26,11 @@ struct CityView: View {
                     }
                 }
                 .padding(.horizontal)
-                .ignoresSafeArea()
+                .ignoresSafeArea() 
             }
             
             .onAppear() {
-                cities = dataService.getData()
+                cities = dataService.getFileData()
         }
         }
     }
