@@ -25,12 +25,44 @@ struct DetailView: View {
                         .fontWeight(.bold)
                     Text(attraction.longDescription)
                         .multilineTextAlignment(.leading)
+                    
+                    // Create url instance based on URL Scheme
+                    if let url = URL(string: "maps://?q=\(cleanName(name: attraction.name))&sll=\(cleanCoordinates(latLong: attraction.latLong))&z=10&t=s") {
+                        
+                        // Test if URL can be opened
+                        if UIApplication.shared.canOpenURL(url) {
+                            
+                            Button {
+                                // Open the url
+                                UIApplication.shared.open(url)
+                                
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .foregroundStyle(.blue)
+                                        .frame(height: 40)
+                                    Text("Get Directions")
+                                        .foregroundStyle(.white)
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.bottom, 30)
             }
             .padding(.horizontal)
         }
         .ignoresSafeArea()
+    }
+    
+    private func cleanName(name: String) -> String {
+        
+        return name.replacingOccurrences(of: " ", with: "+").folding(options: .diacriticInsensitive, locale: .current)
+    }
+    
+    private func cleanCoordinates(latLong: String) -> String {
+        
+        return latLong.replacingOccurrences(of: " ", with: "")
     }
 }
 
